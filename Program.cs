@@ -39,16 +39,20 @@
         }
         static double CalculateBill(int unitConsumed)
         {
+            const double tier1 = 199 * 1.2;
+            const double tier2 = (200 * 1.5) + tier1;
+            const double tier3 = (200 * 1.8) + tier2;
+
             switch (unitConsumed)
             {
                 case <= 199:
                 return unitConsumed * 1.2;
                 case <= 400:
-                return (199 * 1.2) + ((unitConsumed - 199) * 1.5);
+                return tier1 + ((unitConsumed - 199) * 1.5);
                 case <= 600:
-                return (199 * 1.2) + (200 * 1.5) + ((unitConsumed - 399) * 1.8);
+                return tier2 + ((unitConsumed - 399) * 1.8);
                 default:
-                return (199 * 1.2) + (200 * 1.5) + (200 * 1.8) + ((unitConsumed - 599) * 2.0);
+                return tier3 + ((unitConsumed - 599) * 2.0);
             }
         }
 
